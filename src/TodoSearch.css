@@ -2,6 +2,7 @@
   font-family: 'Overpass', sans-serif;
   font-size: 110%;
   color: #1b262c;
+  text-align: center;  
     
   width: 100%;
   max-width: 600px;
@@ -12,7 +13,7 @@
   align-items: center;
     
   margin-bottom: 10px;
-  padding: 5px 5px 5px 10px;
+  padding: 10px 10px 10px 10px;
     
   box-sizing: border-box;
     
