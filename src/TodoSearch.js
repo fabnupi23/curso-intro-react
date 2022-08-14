@@ -6,7 +6,7 @@ import './TodoSearch.css';
 function TodoSearch(){
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
-        <input className="TodoSearch" placeholder="Cebolla" />
+        <input className="TodoSearch" placeholder="Buscar Tareas" />
     );
 }
 

@@ -7,7 +7,7 @@ function CreateTodoButton(props){
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
     
-      <button className="CreateTodoButton">Nueva Tarea</button>
+      <button className="CreateTodoButton">+</button>
        
     );
 }

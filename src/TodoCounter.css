@@ -1,9 +1,15 @@
 .TodoCounter{
   font-size: 250%;
-    color:#bbe1fa;
-    text-align: center;
-    margin-bottom: 20px;
+  color:#bbe1fa;
+  text-align: center;
+  margin-bottom: 20px;
  
+}
+.TodoCounter-segundo{
+  font-size: 150%;
+  color:#bbe1fa;
+  text-align: center;    
+  margin-top: 15px;
 }
 
  

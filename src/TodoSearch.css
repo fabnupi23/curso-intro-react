@@ -1,21 +1,25 @@
 .TodoSearch {
   font-family: 'Overpass', sans-serif;
-    font-size: 110%;
-    color: #1b262c;
+  font-size: 110%;
+  color: #1b262c;
     
-    display: block;
-    width: 100%;
-    height: 40px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
     
-    margin-bottom: 10px;
-    padding: 5px 5px 5px 10px;
+  margin-bottom: 10px;
+  padding: 5px 5px 5px 10px;
     
-    box-sizing: border-box;
+  box-sizing: border-box;
     
-    border: none;
-    border-radius: 3px 3px 3px 3px;
-    -moz-border-radius: 3px 3px 3px 3px;
-    -webkit-border-radius: 3px 3px 3px 3px;
+  border: none;
+  border-radius: 3px 3px 3px 3px;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
 }
 
 .TodoSearch::placeholder {
