@@ -10,7 +10,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 function TodoItem(props){
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
-      <div>
+      <div className="centrar">
         
         <li className="TodoItem">
         <span className={`Icon Icon-check ${props.completed && 'Icon-check--active'}`}>

@@ -6,10 +6,10 @@ import './TodoCounter.css';
 function TodoCounter(){
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
-        <section>
+        <div className="formulario">
             <h1 className="TodoCounter">Bienvenido</h1>
             <h2 className="TodoCounter-segundo">Has completado 2 de 3 ToDos</h2>
-        </section>
+        </div>
     );
 }
 

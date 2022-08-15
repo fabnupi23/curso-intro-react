@@ -1,15 +1,31 @@
 .TodoCounter{
-  font-size: 250%;
-  color:#bbe1fa;
+  font-size: 24px;
   text-align: center;
-  margin-bottom: 20px;
- 
+  margin: 0;
+  padding: 48px;
+  color:#0d0e0f;
 }
 .TodoCounter-segundo{
   font-size: 150%;
-  color:#bbe1fa;
+  color:#0d0e0f;
   text-align: center;    
   margin-top: 15px;
+}
+.formulario{
+  width: 50%;
+  padding: 30px 30px;
+  background-color: #697bf1;
+  margin: 0 auto;
+    
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+    
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+    
+  box-sizing: border-box;
 }
 
  
