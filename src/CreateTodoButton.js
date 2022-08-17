@@ -5,10 +5,18 @@ import './CreateTodoButton.css';
 //Vamos a crear una función con el nombre de nuestro componente 
 
 function CreateTodoButton(props){
+
+    //Creamos una variable  donde vamos a guardar nuestra función 
+    const onClickButton = () => {
+      alert('Aquí se debería abrir el modal');
+    }
+
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
     
-      <button className="CreateTodoButton">+</button>
+      <button className="CreateTodoButton" onClick={onClickButton}>
+        +
+      </button>
        
     );
 }
