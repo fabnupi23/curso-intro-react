@@ -33,18 +33,19 @@ function App() {
   let searchedTodos = [];
 
   if (!searchValue.length >= 1) {
-    searchedTodos = todos;    
+    searchedTodos = todos;    //va a ser igual la lista de ToDos que tenemos por defecto
   }else{
+    //Nuestro array donde realmente vamos a buscar los componentes que vamos a renderizar 
     searchedTodos = todos.filter(todo => {
       //creamos una variable para que en la busqueda no discrimine tipografia
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       //Ahora vamos a filtrar a definir si cada uno de nuestros ToDos tiene el texto que incluye algo de lo que digitamos en nuestro input de busqueda
-      return todoText.includes(searchText);
+      return todoText.includes(searchText); //Lorestornamos para decirle a nuestro metodo filter que ese es el criterio de evaluación todoText.includes(searchText) para determianr que ToDos muestra y cuales no.
     });
   }
 
-
+//TodoList solo va a renderizar unos todoItems, no todos y para ellos utilizamos el parametro searchedTodos lo cual nos mostrar la lista por defecto y se realizara el filtrado
   return (
     <React.Fragment> 
       <TodoCounter
