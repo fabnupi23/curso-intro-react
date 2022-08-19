@@ -3,10 +3,8 @@ import './TodoSearch.css';
 
 //Vamos a crear una función con el nombre de nuestro componente
 
-function TodoSearch() {
-    //Para el tema del estado empezamos creando una variable...
-  const [searchValue, setSearchValue] = React.useState(''); //...entonces para crear un estado en react vamos a llamar a React.useState, esta es la forma en que podemos agregar estados a nuestros componentes cuando los creamos como funciones 
-  
+function TodoSearch({searchValue, setSearchValue}) { //acá en la función recibimos en el parametro dos props
+    
   //El evento onChange que es un propeidad para que filtre todos los TodoItems  que tengan en su propiedad text, el texto que nosotros escribamos en el campo, para esto creamos un arrowFunction
   const onSearchValueChange = (event) => {  //Este evento es especial porque nos va a devolver el valor del input, es por eso que recibimos un parametro llamado 'event'
     console.log(event.target.value);
@@ -14,15 +12,14 @@ function TodoSearch() {
   };
   //Acá dentro vamos a retornar el codigo que necesitemos
 
-  return [
+  return (
     <input
       className="TodoSearch"
-      placeholder="Cebolla"
+      placeholder="Introduce el ToDo"
       value={searchValue}   //Debemos indicarle que el valor es el mismo estado searchValue
       onChange={onSearchValueChange}
-    />,
-    <p>{searchValue}</p>
-  ];
+    />
+  );
 }
 
 export { TodoSearch };

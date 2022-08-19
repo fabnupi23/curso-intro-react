@@ -10,23 +10,55 @@ import { CreateTodoButton } from "./CreateTodoButton";
 
 
 //Creamos una lista falsa de ToDos; Creamos un array que se llame Todos, y vamos a decirle que es un array con objetos y cada objeto va a tener varias propiedades.
-const todos = [
+const defaultTodos = [
   { text: 'Maquetación React', completed: true}, //Este texto va a tener una descripción de nuestra tarea pendiente y cada ToDo va a tener una propiedad llamada completed y por defecto ponerla False
   { text: 'Personalizar maquetación', completed: false}, 
   { text: 'Funcionalidad React', completed: false},
-  { text: 'Subir a GitHub', completed: false}  
+  { text: 'Subir a GitHub', completed: true}  
 ];
 
 
 function App() {
+  //Acá vamos a crear nuestros ToDos para que el usuario los pueda generar y no esten hardcodeados; es decir, creamos un nuevo estado para nuestros ToDos
+  const [todos, setTodos] = React.useState(defaultTodos);
+
+  //Acá vamos a crear a nuestro estado 
+  const [searchValue, setSearchValue] = React.useState(''); //...entonces para crear un estado en react vamos a llamar a React.useState, esta es la forma en que podemos agregar estados a nuestros componentes cuando los creamos como funciones 
+
+  //Acá vamos a contar cuantos Todos hemos completado y cuantos tenemos en total 
+  const completedTodos = todos.filter(todo => !!todo.completed).length; //Cada vez que se renderice nuestro componente vamos a hacer esta cuenta, es decir cuantos ToDos se han marcado como completados 
+  const totalTodos = todos.length; //Acá vamos a tener el total de ToDos
+
+  //vamos a filtrar la cantidad de ToDos por medio de un array vacio
+  let searchedTodos = [];
+
+  if (!searchValue.length >= 1) {
+    searchedTodos = todos;    
+  }else{
+    searchedTodos = todos.filter(todo => {
+      //creamos una variable para que en la busqueda no discrimine tipografia
+      const todoText = todo.text.toLowerCase();
+      const searchText = searchValue.toLowerCase();
+      //Ahora vamos a filtrar a definir si cada uno de nuestros ToDos tiene el texto que incluye algo de lo que digitamos en nuestro input de busqueda
+      return todoText.includes(searchText);
+    });
+  }
+
+
   return (
     <React.Fragment> 
-      <TodoCounter/>      
-      <TodoSearch/>
+      <TodoCounter
+        total={totalTodos} 
+        completed={completedTodos}     
+      />      
+      <TodoSearch
+        searchValue={searchValue} 
+        setSearchValue={setSearchValue}      
+      />
       
 
       <TodoList> 
-        {todos.map(todo => (
+        {searchedTodos.map(todo => (
           <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
         ))}
       </TodoList> 
