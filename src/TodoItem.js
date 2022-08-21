@@ -8,12 +8,6 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 //Vamos a crear una función con el nombre de nuestro componente 
 
 function TodoItem(props){
-
-    //Creamos dos variables  donde vamos a guardar nuestras funciones, la primera es cuando le demos click en el simbolo de check y la segunda cunado eliminemos una tarea  
-    const onDelete = () => {
-      alert('Haz eliminado la tarea ' + props.text);
-    }
-
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
       <div className="centrar">
@@ -29,7 +23,7 @@ function TodoItem(props){
 
         </p>
 
-        <span className="Icon Icon-delete" onClick={onDelete}>
+        <span className="Icon Icon-delete" onClick={props.onDelete}>
           <FontAwesomeIcon icon={faTrashCan} />
         </span>         
       </li>

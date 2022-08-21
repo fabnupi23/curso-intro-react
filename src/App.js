@@ -47,11 +47,19 @@ function App() {
 
 
   //Esta función cada vez que reciba un texto va a buscar cual de nuestros ToDos en nuestra lista  para actualizarlo
-  const completeTodos = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
-    const todoIndex = todos.findIndex(todo => todo.text === text); //Examinamos ToDo por ToDo cual tiene exactamente ese mismo texto 
-    const newTodos = [...todos];  //...Se examinan los ToDos para ver si cumple con la condición de busqueda, como tal acá se esta clonando la lista(se crea una nueva lista )
+  const completeTodo = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
+    const todoIndex = todos.findIndex(todo => todo.text === text); //Buscamos la posicion o el index en ToDo que tenga el mismo texto que estamos recibiendo como parametros
+    const newTodos = [...todos];  //Creamos una copia de los ToDos
     newTodos[todoIndex].completed = true; //...Les estamos marcando a esos ToDos de tener esas mismas condiciiones de tener ese mismo texto la propiedad completed como true
-    setTodos(newTodos);//Actualizar nuestro estado
+    setTodos(newTodos);//Volvemos a llamar esta funcón para actualizar la lista 
+  };
+
+  //Eliminar ToDos
+  const deleteTodo = (text) => {  
+    const todoIndex = todos.findIndex(todo => todo.text === text); //Buscamos la posicion o el index en ToDo que tenga el mismo texto que estamos recibiendo como parametros
+    const newTodos = [...todos];   //Creamos una copia de los ToDos
+    newTodos.splice(todoIndex, 1);//En este metodo enviamos dos argumentos 
+    setTodos(newTodos); //Volvemos a llamar esta funcón para actualizar la lista 
   };
 
 
@@ -70,7 +78,7 @@ function App() {
 
       <TodoList> 
         {searchedTodos.map(todo => (
-          <TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => completeTodos(todo.text)}/>
+          <TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => completeTodo(todo.text)} onDelete={() => deleteTodo(todo.text)}/>
         ))}
       </TodoList> 
 
