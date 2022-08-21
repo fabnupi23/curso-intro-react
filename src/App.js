@@ -45,6 +45,16 @@ function App() {
     });
   }
 
+
+  //Esta función cada vez que reciba un texto va a buscar cual de nuestros ToDos en nuestra lista  para actualizarlo
+  const completeTodos = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
+    const todoIndex = todos.findIndex(todo => todo.text === text); //Examinamos ToDo por ToDo cual tiene exactamente ese mismo texto 
+    const newTodos = [...todos];  //...Se examinan los ToDos para ver si cumple con la condición de busqueda, como tal acá se esta clonando la lista(se crea una nueva lista )
+    newTodos[todoIndex].completed = true; //...Les estamos marcando a esos ToDos de tener esas mismas condiciiones de tener ese mismo texto la propiedad completed como true
+    setTodos(newTodos);//Actualizar nuestro estado
+  };
+
+
 //TodoList solo va a renderizar unos todoItems, no todos y para ellos utilizamos el parametro searchedTodos lo cual nos mostrar la lista por defecto y se realizara el filtrado
   return (
     <React.Fragment> 
@@ -60,7 +70,7 @@ function App() {
 
       <TodoList> 
         {searchedTodos.map(todo => (
-          <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>
+          <TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => completeTodos(todo.text)}/>
         ))}
       </TodoList> 
 
