@@ -1,6 +1,6 @@
 import React from "react"; //Por cada uno de los componentes vamos a importar a React desde react
 import './TodoCounter.css';
-import saludo from './img/saludo.svg';
+import saludo from '../img/saludo.svg';
 
 
 
