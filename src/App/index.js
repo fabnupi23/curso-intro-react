@@ -1,9 +1,6 @@
 import React from "react";
-import { TodoCounter } from '../TodoCounter';
-import { TodoSearch } from '../TodoSearch';
-import { TodoItem } from '../TodoItem';
-import { TodoList } from "../TodoList";
-import { CreateTodoButton } from "../CreateTodoButton";
+import { AppUI } from "./AppUI";
+
 
 
 //import './App.css';
@@ -65,26 +62,18 @@ function App() {
 
 //TodoList solo va a renderizar unos todoItems, no todos y para ellos utilizamos el parametro searchedTodos lo cual nos mostrar la lista por defecto y se realizara el filtrado
   return (
-    <React.Fragment> 
-      <TodoCounter
-        total={totalTodos} 
-        completed={completedTodos}     
-      />      
-      <TodoSearch
-        searchValue={searchValue} 
-        setSearchValue={setSearchValue}      
-      />
-      
+    <AppUI
+      totalTodos={totalTodos} 
+      completedTodos={completedTodos}
 
-      <TodoList> 
-        {searchedTodos.map(todo => (
-          <TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => completeTodo(todo.text)} onDelete={() => deleteTodo(todo.text)}/>
-        ))}
-      </TodoList> 
+      searchValue={searchValue} 
+      setSearchValue={setSearchValue}
 
-      <CreateTodoButton/> 
-      
-    </React.Fragment>
+      searchedTodos={searchedTodos}
+
+      completeTodo={completeTodo}
+      deleteTodo={deleteTodo}
+    />    
   );
 }
 
