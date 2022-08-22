@@ -69,7 +69,7 @@ function App() {
 
 
   
-  //Esta función Es para marcar los ToDos como completados.
+  //Esta función Es para marcar los ToDos como completados. 
   const completeTodo = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
     const todoIndex = todos.findIndex(todo => todo.text === text); //Buscamos la posicion o el index en ToDo que tenga el mismo texto que estamos recibiendo como parametros
     const newTodos = [...todos];  //Creamos una copia de los ToDos
