@@ -17,37 +17,61 @@ import { AppUI } from "./AppUI";
 
 
 function useLocalStorage(itemName, initialValue){ // Recibimos como parámetros el nombre y el estado inicial de nuestro item.
+  const[error, setError] = React.useState(false);  
+  const[loading, setLoading] = React.useState(true);  
+  const [item, setItem] = React.useState(initialValue); // ¡Podemos utilizar otros hooks!
 
-  const localStorageItem = localStorage.getItem(itemName);  // Guardamos nuestro item en una constante
-  let parsedItem;
+  React.useEffect(() =>{
+    setTimeout(() =>{
+      try{
+        const localStorageItem = localStorage.getItem(itemName);  // Guardamos nuestro item en una constante
+        let parsedItem;
 
-  if (!localStorageItem) {    
-    localStorage.setItem(itemName, JSON.stringify(initialValue)); // Si el usuario es nuevo no existe un item en localStorage, por lo tanto guardamos uno con un array vacío
-    parsedItem = initialValue;  //le damos un estado por defecto a nuestra aplcación
-  }else{
-    parsedItem = JSON.parse(localStorageItem);  // Si existen TODOs en el localStorage los regresamos como nuestros todos
-  }
+        if (!localStorageItem) {    
+          localStorage.setItem(itemName, JSON.stringify(initialValue)); // Si el usuario es nuevo no existe un item en localStorage, por lo tanto guardamos uno con un array vacío
+          parsedItem = initialValue;  //le damos un estado por defecto a nuestra aplcación
+        }else{
+          parsedItem = JSON.parse(localStorageItem);  // Si existen TODOs en el localStorage los regresamos como nuestros todos
+        }
 
-  const [item, setItem] = React.useState(parsedItem); // ¡Podemos utilizar otros hooks!
+        setItem(parsedItem);
+        setLoading(false);
+      } catch(error){
+         setError(error);
+      }
+    }, 1000);
+  });
+  
 
   const saveItem = (newItem) => { // Actualizamos la función para guardar nuestro item con las nuevas variables y parámetros
-    const stringifiedItem = JSON.stringify(newItem);  // Convertimos a string nuestros TODOs
-    localStorage.setItem(itemName, stringifiedItem);  // Los guardamos en el localStorage
-    setItem(newItem); // Actualizamos nuestro estado
+    try {
+      const stringifiedItem = JSON.stringify(newItem);  // Convertimos a string nuestros TODOs
+      localStorage.setItem(itemName, stringifiedItem);  // Los guardamos en el localStorage
+      setItem(newItem); // Actualizamos nuestro estado
+    } catch (error) {
+      setError(error);
+    }
   }; 
 
   // Regresamos los datos que necesitamos en nuestro reactHook
-  return [
+  return {
     item,
     saveItem,
-  ];
+    loading,
+    error,
+  };
 
 }
 
 
 function App() {
 
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []); // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+  } = useLocalStorage('TODOS_V1', []); // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)
 
 
   //Acá vamos a crear a nuestro estado 
@@ -93,9 +117,11 @@ function App() {
   };
 
 
-//TodoList solo va a renderizar unos todoItems, no todos y para ellos utilizamos el parametro searchedTodos lo cual nos mostrar la lista por defecto y se realizara el filtrado
+ //TodoList solo va a renderizar unos todoItems, no todos y para ellos utilizamos el parametro searchedTodos lo cual nos mostrar la lista por defecto y se realizara el filtrado
   return (
     <AppUI
+      loading={loading}
+      error={error}
       totalTodos={totalTodos} 
       completedTodos={completedTodos}
 
