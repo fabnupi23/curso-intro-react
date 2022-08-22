@@ -7,17 +7,31 @@ import { AppUI } from "./AppUI";
 
 
 //Creamos una lista falsa de ToDos; Creamos un array que se llame Todos, y vamos a decirle que es un array con objetos y cada objeto va a tener varias propiedades.
-const defaultTodos = [
+/* const defaultTodos = [
   { text: 'Maquetación React', completed: true}, //Este texto va a tener una descripción de nuestra tarea pendiente y cada ToDo va a tener una propiedad llamada completed y por defecto ponerla False
   { text: 'Personalizar maquetación', completed: false}, 
   { text: 'Funcionalidad React', completed: false},
   { text: 'Subir a GitHub', completed: true}  
-];
+]; */
 
 
 function App() {
+  //vamos a llamar al localstorage y para eso creamos una variable; Traemos nuestros TODOs almacenados
+  const localStorageTodos = localStorage.getItem('TODOS_V1');
+  let parsedTodos;
+
+  if (!localStorageTodos) {
+    // Si el usuario es nuevo no existe un item en localStorage, por lo tanto guardamos uno con un array vacío    
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    //le damos un estado por defecto a nuestra aplcación
+    parsedTodos = [];
+  }else{
+    // Si existen TODOs en el localStorage los regresamos como nuestros todos
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
   //Acá vamos a crear nuestros ToDos para que el usuario los pueda generar y no esten hardcodeados; es decir, creamos un nuevo estado para nuestros ToDos
-  const [todos, setTodos] = React.useState(defaultTodos);
+  const [todos, setTodos] = React.useState(parsedTodos);
 
   //Acá vamos a crear a nuestro estado 
   const [searchValue, setSearchValue] = React.useState(''); //...entonces para crear un estado en react vamos a llamar a React.useState, esta es la forma en que podemos agregar estados a nuestros componentes cuando los creamos como funciones 
@@ -42,13 +56,25 @@ function App() {
     });
   }
 
+  // Creamos la función en la que actualizaremos nuestro localStorage
+  const saveTodos = (newTodos) => {
+    // Convertimos a string nuestros TODOs
+    const stringifyTodos = JSON.stringify(newTodos);
+    // Los guardamos en el localStorage
+    localStorage.setItem('TODOS_V1', stringifyTodos);
+    // Actualizamos nuestro estado
+    setTodos(newTodos);
+  }; 
 
+
+
+  
   //Esta función Es para marcar los ToDos como completados
   const completeTodo = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
     const todoIndex = todos.findIndex(todo => todo.text === text); //Buscamos la posicion o el index en ToDo que tenga el mismo texto que estamos recibiendo como parametros
     const newTodos = [...todos];  //Creamos una copia de los ToDos
     newTodos[todoIndex].completed = true; //...Les estamos marcando a esos ToDos de tener esas mismas condiciiones de tener ese mismo texto la propiedad completed como true
-    setTodos(newTodos);//Volvemos a llamar esta funcón para actualizar la lista 
+    saveTodos(newTodos);//Volvemos a llamar esta funcón para actualizar la lista 
   };
 
   //Eliminar ToDos
@@ -56,7 +82,7 @@ function App() {
     const todoIndex = todos.findIndex(todo => todo.text === text); //Buscamos la posicion o el index en ToDo que tenga el mismo texto que estamos recibiendo como parametros
     const newTodos = [...todos];   //Creamos una copia de los ToDos
     newTodos.splice(todoIndex, 1);//En este metodo enviamos dos argumentos 
-    setTodos(newTodos); //Volvemos a llamar esta funcón para actualizar la lista 
+    saveTodos(newTodos); //Volvemos a llamar esta funcón para actualizar la lista 
   };
 
 
