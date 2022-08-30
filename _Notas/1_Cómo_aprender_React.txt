@@ -1,0 +1,22 @@
+Para comenzar nuestro camino en el mundo de React necesitamos tener una base sólida en las principales tecnologías
+del front end: HTML, CSS y JavaScript.
+
+El trabajo de un desarrollador front-end es darle la mejor experiencia posible a nuestros usuarios:
+    -Flujo de navegación
+    -Tiempos de carga
+    -Accesibilidad
+    -Optimización
+    -Usabilidad
+
+                                                    ¿Qué es React.js?
+React es una herramienta de JavaScript en el front end que nos ayuda a construir la parte visual de nuestras aplicaciones web, las 
+interfaces con las que van a interactuar nuestros usuarios.
+
+React es una librería progresiva, esto porque puedes hacer desde una página sencilla hasta poder desarrollar aplicaciones gigantes,
+ y llegar a convertirse en un framework en conjunto de muchas herramientas que existen a su alrededor.
+
+
+                                                    ¿Por qué aprender React?
+Mientras más crecen nuestras aplicaciones web, se vuelve más complicado nuestro trabajo utilizando solamente HTML, CSS y JavaScript.
+La magia de React es que nos facilita crear y organizar nuestro código, acelerar el proceso de creación, además de ofrecernos una mejor 
+experiencia como desarrolladores.

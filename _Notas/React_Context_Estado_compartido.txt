@@ -1,0 +1,3 @@
+Esta herramienta nos permite crear Proveer Consumir para que nuetro estado no solo podamos compartirlo entre los diferentes elementos de 
+nuestros componentes sino ahora también entre los diferentes com ponentes de nuestra aplicación, eso quiere decir que ya no tenemos que 
+pasar cantidad de PROPS por cada componente papá, abuelo, hijo etc ahora vamos a poderlos compartir mucho mas facil 
