@@ -13,7 +13,7 @@ function AppUI(){
       <TodoSearch/>
 
       <TodoContext.Consumer>
-        {({ error, loading, searchedTodos, completeTodo, deleteTodo, }) => (
+        {({ error, loading, searchedTodos, completeTodo, deleteTodo, }) => (  //Render Props
           <TodoList> 
             {error && <p>Error al cargar la pagina...</p>}
             {loading && <p>Estamos cargando la pagina, tomalo con calma...</p>}  
