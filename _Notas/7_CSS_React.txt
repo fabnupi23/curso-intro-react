@@ -1,0 +1,370 @@
+                                                            CSS en React
+Existen varias formas de agregar estilos en React:
+
+        * Hoja de estilos externa: podemos crear nuestro archivo CSS con todos nuestros estilos y después importarlo.
+        * Estilos en línea: así como en HTML, también podemos agregar estilos en línea, pero con una diferente sintaxis.
+
+Estilos en línea
+    Para estos estilos necesitamos agregarle las llaves principales a la propiedad {}, para poder pasarle un objeto de JavaScript
+    con nuestros estilos, también cambia un poco la sintaxis de CSS, aquí se utiliza el camelCase para el nombre de las propiedades 
+    de CSS, y para los valores necesitamos escribirlos entre comillas.
+        __________________________________________________
+        |import React from "react";                       |
+        |                                                 |
+        |function TodoCounter(){                          |
+        |    return(                                      |
+        |        <h2 style={{                             |
+        |                color: 'red',                    |
+        |                backgroundColor: 'yellow'        |
+        |            }}                                   |
+        |        >                                        |
+        |            Has complentado 2 de 3 ToDos         |
+        |        </h2>                                    |
+        |    )                                            |
+        |}                                                |
+        |                                                 |
+        |export {TodoCounter};                            |
+        |_________________________________________________|
+    Los estilos en línea en React son mala práctica por las mismas razones que lo son en HTML.
+
+Hoja de estilos externa:
+    También podemos importar un archivo CSS directamente en React:
+        ______________________________
+        |.TodoCounter {               |
+        |    font-size: 24px;         |
+        |    text-align: center;      |
+        |}                            |
+        |_____________________________|
+        ________________________________________________
+        |import React from "react";                     |
+        |import './todoCounter.css'                     |
+        |                                               |
+        |function TodoCounter(){                        |
+        |    return(                                    |
+        |        <h2 className="TodoCounter">           |
+        |            Has complentado 2 de 3 ToDos       |
+        |        </h2>                                  |
+        |    )                                          |
+        |}                                              |
+        |                                               |
+        |export {TodoCounter};                          |
+        |_______________________________________________|
+
+Estilos y componentes:
+    Ahora crearemos los estilos de cada uno de nuestros componentes, fíjate bien en la lógica de nuestro TodoItem, 
+    estaremos utilizando JavaScript para alternar nuestros estilos, dependiendo si el TODO está completado o no.
+
+TodoCounter: 
+        ______________________
+        |.TodoCounter {       |
+        |font-size: 24px;     |
+        |text-align: center;  |
+        |margin: 0;           |
+        |padding: 48px;       |
+        |}                    |
+        |_____________________|
+        ____________________________________________________________________________
+        |import React from 'react';                                                 |
+        |import './TodoCounter.css';                                                |
+        |                                                                           |
+        |function TodoCounter() {                                                   |
+        |   return (                                                                |
+        |        <h2 className="TodoCounter">Has completado 2 de 3 TODOs</h2>       |
+        |   );                                                                      |
+        |}                                                                          |
+        |                                                                           |
+        |export { TodoCounter };                                                    |
+        |___________________________________________________________________________|
+
+TodoSearch:
+        __________________________________________________________________________
+        |.TodoSearch {                                                            |
+        |    background: #F9FBFC;                                                 |
+        |    border-radius: 2px;                                                  |
+        |    border: 2px solid #202329;                                           |
+        |    margin: 0 24px;                                                      |
+        |    height: 64px;                                                        |
+        |    width: calc(100% - 62px);                                            |
+        |    font-size: 24px;                                                     |
+        |    text-align: center;                                                  |
+        |    font-family: 'Montserrat';                                           |
+        |    font-weight: 400;                                                    |
+        |    color: #1E1E1F;                                                      |
+        |    box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.25);                     |
+        |}                                                                        |
+        |                                                                         |
+        |.TodoSearch::placeholder {                                               |
+        |    color: #A5A5A5;                                                      |
+        |    font-family: 'Montserrat';                                           |
+        |    font-weight: 400;                                                    |
+        |}                                                                        |
+        |                                                                         |
+        |.TodoSearch:focus {                                                      |
+        |    outline-color: #61DAFA;                                              |
+        |}                                                                        |
+        |_________________________________________________________________________|  
+        __________________________________________________________________________
+        |import React from 'react';                                               |
+        |import './TodoSearch.css';                                               |
+        |                                                                         |
+        |function TodoSearch() {                                                  |
+        |return (                                                                 |
+        |    <input className="TodoSearch" placeholder="Cebolla" />               |
+        |);                                                                       |
+        |}                                                                        |
+        |                                                                         |
+        |export { TodoSearch };                                                   |
+        |_________________________________________________________________________| 
+
+
+TodoList:
+        _____________________________
+        |ul {                        |
+        |    margin: 0;              |
+        |    padding: 0 0 56px 0;    |
+        |    list-style: none;       | 
+        |}                           |
+        |____________________________|
+
+
+______________________________________
+|import React from 'react';           |
+|import './TodoList.css'              |
+|                                     |
+|function TodoList(props) {           |
+|  return (                           |
+|    <section>                        |
+|      <ul>                           |
+|        {props.children}             |
+|      </ul>                          |
+|    </section>                       |
+|  );                                 |
+|}                                    |
+|                                     |
+|export { TodoList };                 |
+|_____________________________________|
+
+
+TodoItem:
+____________________________________________________________________________
+|.TodoItem {                                                                |
+|  background-color: #FAFAFA;                                               |
+|  position: relative;                                                      |
+|  display: flex;                                                           |
+|  justify-content: center;                                                 |
+|  align-items: center;                                                     |
+|  margin-top: 24px;                                                        |
+|  box-shadow: 0px 5px 50px rgba(32, 35, 41, 0.15);                         |
+|}                                                                          |
+|                                                                           |
+|.TodoItem-p {                                                              |
+|  margin: 24px 0 24px 24px;                                                |
+|  width: calc(100% - 120px);                                               |
+|  font-size: 18px;                                                         |
+|  line-height: 24px;                                                       |
+|  font-weight: 400;                                                        |
+|}                                                                          |
+|.TodoItem-p--complete {                                                    |
+|  text-decoration: line-through;                                           |
+|}                                                                          |
+|                                                                           |
+|.Icon {                                                                    |
+|  cursor: pointer;                                                         |
+|  display: flex;                                                           |
+|  justify-content: center;                                                 |
+|  align-items: center;                                                     |
+|  height: 48px;                                                            |
+|  width: 48px;                                                             |
+|  font-size: 24px;                                                         |
+|  font-weight: bold;                                                       |
+|  /* background-color: #CCC; */                                            |
+|}                                                                          |
+|                                                                           |
+|.Icon-check {                                                              |
+|  position: absolute;                                                      |
+|  left: 12px;                                                              |
+|}                                                                          |
+|.Icon-check--active {                                                      |
+|  color: #4caf50;                                                          |
+|}                                                                          |
+|                                                                           |
+|.Icon-delete {                                                             |
+|  position: absolute;                                                      |
+|  top: -24px;                                                              |
+|  right: 0;                                                                |
+|}                                                                          |
+|.Icon-delete:hover {                                                       |
+|  color: red;                                                              |
+|}                                                                          |
+|___________________________________________________________________________|
+
+___________________________________________________________________________________________________
+|import React from 'react';                                                                        |
+|import './TodoItem.css';                                                                          |
+|                                                                                                  |
+|function TodoItem(props) {                                                                        |
+|  return (                                                                                        |
+|    <li className="TodoItem">                                                                     |
+|      <span className={`Icon Icon-check ${props.completed && 'Icon-check--active'}`}>             |
+|        √                                                                                         |
+|      </span>                                                                                     |
+|      <p className={`TodoItem-p ${props.completed && 'TodoItem-p--complete'}`}>                   |
+|        {props.text}                                                                              |
+|      </p>                                                                                        |
+|      <span className="Icon Icon-delete">                                                         |
+|        X                                                                                         |
+|      </span>                                                                                     |
+|    </li>                                                                                         |
+|  );                                                                                              |
+|}                                                                                                 |
+|                                                                                                  |
+|export { TodoItem };                                                                              |
+|__________________________________________________________________________________________________|
+
+
+
+CreateTodoButton:
+
+__________________________________________________________________________
+|.CreateTodoButton {                                                      |
+|  background-color: #61DAFA;                                             |
+|  box-shadow: 0px 5px 25px rgba(97, 218, 250, 0.5);                      |
+|  border: none;                                                          |
+|  border-radius: 50%;                                                    |
+|  cursor: pointer;                                                       |
+|  font-size: 50px;                                                       |
+|  position: fixed;                                                       |
+|  bottom: 24px;                                                          |
+|  right: 24px;                                                           |
+|  font-weight: bold;                                                     |
+|  color: #FAFAFA;                                                        |
+|  display: flex;                                                         |
+|  justify-content: center;                                               |
+|  align-items: center;                                                   |
+|  height: 64px;                                                          |
+|  width: 64px;                                                           |
+|                                                                         |
+|  transform: rotate(0);                                                  |
+|  transition: .3s ease;                                                  |
+|}                                                                        |
+|                                                                         |
+|.CreateTodoButton:hover {                                                |
+|  transform: rotate(224deg);                                             |
+|}                                                                        |
+|_________________________________________________________________________|
+_____________________________________________________________
+|import React from 'react';                                  |
+|import './CreateTodoButton.css';                            |
+|                                                            |
+|function CreateTodoButton(props) {                          |
+|  return (                                                  |
+|    <button className="CreateTodoButton">+</button>         |
+|  );                                                        |
+|}                                                           |
+|                                                            |
+|export { CreateTodoButton };                                |
+|____________________________________________________________|
+
+
+Agregar fuentes:
+    Dentro de la carpeta public/ tenemos nuestro archivo HTML, en donde podemos poner un <link> con alguna fuente de google fonts.
+________________________________________________________________________________________________________________________________________
+|<!DOCTYPE html>                                                                                                                        |
+|<html lang="en">                                                                                                                       |
+|  <head>                                                                                                                               |
+|    <meta charset="utf-8" />                                                                                                           |
+|    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />                                                                                |
+|    <meta name="viewport" content="width=device-width, initial-scale=1" />                                                             |
+|    <meta name="theme-color" content="#000000" />                                                                                      |
+|    <meta                                                                                                                              |
+|      name="description"                                                                                                               |
+|      content="Web site created using create-react-app"                                                                                |
+|    />                                                                                                                                 |
+|    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />                                                                    |
+|    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />                                                                          |
+|    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />                     |
+|    <title>React App</title>                                                                                                           |
+|  </head>                                                                                                                              |
+|  <body>                                                                                                                               |
+|    <noscript>You need to enable JavaScript to run this app.</noscript>                                                                |
+|    <div id="root"></div>                                                                                                              |
+|  </body>                                                                                                                              |
+|</html>                                                                                                                                |
+|_______________________________________________________________________________________________________________________________________|
+
+Una vez importamos nuestra fuente ya la podemos llamar en nuestros estilos.
+____________________________________________________________________________________________________
+|body {                                                                                             |
+|  margin: 0;                                                                                       |
+|  padding: 0;                                                                                      |
+|  background: #F2F4F5;                                                                             |
+|  color: #1E1E1F;                                                                                  |
+|  font-family: 'Montserrat', Arial, Helvetica, sans-serif;                                         |
+|}                                                                                                  |
+|                                                                                                   |
+|#root {                                                                                            |
+|  margin: 0 24px;                                                                                  |
+|  position: relative;                                                                              |
+|  min-height: 100vh;                                                                               |
+|}                                                                                                  |
+|___________________________________________________________________________________________________|
+
+Ahora ya podemos importar nuestros estilos del index.css, al ser estilos globales es mejor importarlos en el index.js de nuestra aplicación.
+______________________________________________________
+|import React from 'react';                           |
+|import ReactDOM from 'react-dom';                    |
+|import App from './App';                             |
+|import './index.css';                                |
+|                                                     |
+|ReactDOM.render(                                     |
+|  <App />,                                           |
+|  document.getElementById('root')                    |
+|);                                                   |
+|_____________________________________________________|
+
+Props para TodoItem:
+    Ya que creamos los estilos para los TODOs completados y no completados, y también en el componente creamos la lógica para alternar los estilos 
+    dependiendo si está completado o no, solo nos hace falta pasarle la propiedad completed desde nuestro App.js.
+________________________________________________________________________________
+|import React from 'react';                                                     |
+|import { TodoCounter } from './TodoCounter';                                   |
+|import { TodoSearch } from './TodoSearch';                                     |
+|import { TodoList } from './TodoList';                                         |
+|import { TodoItem } from './TodoItem';                                         |
+|import { CreateTodoButton } from './CreateTodoButton';                         |
+|// import './App.css';                                                         |
+|                                                                               |
+|const todos = [                                                                |
+|  { text: 'Cortar cebolla', completed: true },                                 |
+|  { text: 'Tomar el cursso de intro a React', completed: false },              |
+|  { text: 'Llorar con la llorona', completed: false },                         |
+|  { text: 'LALALALAA', completed: false },                                     |
+|];                                                                             |
+|                                                                               |
+|function App() {                                                               |
+|  return (                                                                     |
+|    <React.Fragment>                                                           |
+|      <TodoCounter />                                                          |
+|      <TodoSearch />                                                           |
+|                                                                               |
+|      <TodoList>                                                               |
+|        {todos.map(todo => (                                                   |
+|          <TodoItem                                                            |
+|            key={todo.text}                                                    |
+|            text={todo.text}                                                   |
+|            completed={todo.completed}                                         |
+|          />                                                                   |
+|        ))}                                                                    |
+|      </TodoList>                                                              |
+|                                                                               |
+|      <CreateTodoButton />                                                     |
+|    </React.Fragment>                                                          |
+|  );                                                                           |
+|}                                                                              |
+|                                                                               |
+|export default App;                                                            |
+|_______________________________________________________________________________|
+
+Cambio dinámico de clases:
+    Una de las grandes ventajas de React, es que podemos utilizar los lógicos && y || para jugar con nuestras clases muy 
+    fácilmente, y dar estilos dependiendo de la clase que esté activa, esto lo aplicamos cuando está completado o no nuestro TODO.
