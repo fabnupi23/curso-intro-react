@@ -12,6 +12,7 @@ function TodoProvider(props){
         loading,
         error,
       } = useLocalStorage('TODOS_V1', []); // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)
+      const[openModal, setOpenModal] = React.useState(false);
     
     
       //Acá vamos a crear a nuestro estado 
@@ -72,6 +73,8 @@ function TodoProvider(props){
            searchedTodos,
            completeTodo,
            deleteTodo,
+           openModal,
+           setOpenModal,
         }}>
             {props.children} 
         </TodoContext.Provider>

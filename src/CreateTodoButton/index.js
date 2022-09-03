@@ -8,8 +8,8 @@ function CreateTodoButton(props){
 
     //Creamos una variable  donde vamos a guardar nuestra función 
     const onClickButton = () => {
-      alert('Aquí se debería abrir el modal');
-    }
+      props.setOpenModal(true); 
+    };
 
     //Acá dentro vamos a retornar el codigo que necesitemos
     return(
