@@ -41,6 +41,16 @@ function TodoProvider(props){
     
     
       
+      
+      const addTodo = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
+        const newTodos = [...todos];  //Creamos una copia de los ToDos
+        newTodos.push({
+          completed: false,
+          text,
+        });
+        saveTodos(newTodos);//Volvemos a llamar esta funcón para actualizar la lista 
+      };
+
       //Esta función Es para marcar los ToDos como completados. 
       const completeTodo = (text) => { //cuando llamemos a la funcion completeTodos, vamos a enviarle un texto es decir el texto de nuestro ToDo 
         const todoIndex = todos.findIndex(todo => todo.text === text); //Buscamos la posicion o el index en ToDo que tenga el mismo texto que estamos recibiendo como parametros
@@ -72,6 +82,7 @@ function TodoProvider(props){
            setSearchValue,
            searchedTodos,
            completeTodo,
+           addTodo,
            deleteTodo,
            openModal,
            setOpenModal,
