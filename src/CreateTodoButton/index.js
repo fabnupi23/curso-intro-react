@@ -8,7 +8,7 @@ function CreateTodoButton(props){
 
     //Creamos una variable  donde vamos a guardar nuestra función 
     const onClickButton = () => {
-      props.setOpenModal(true); 
+      props.setOpenModal(prevState => !prevState); 
     };
 
     //Acá dentro vamos a retornar el codigo que necesitemos
