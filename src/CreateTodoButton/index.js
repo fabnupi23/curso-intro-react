@@ -1,4 +1,5 @@
 import React from "react"; //Por cada uno de los componentes vamos a importar a React desde react
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './CreateTodoButton.css';
 
 
